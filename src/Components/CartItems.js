@@ -8,7 +8,7 @@ const CartItems = (props) => {
 
   async function fetchData() {
     const response = await axios.get(
-      "https://crudcrud.com/api/ec2f46f440e44d4b8d87cc9df85914ca/cartMedicine"
+      "https://crudcrud.com/api/98d87dcc976c40fdb1b4d7c060a82f5c/cartMedicine"
     );
     const data = await response.data;
     if (data) {
@@ -32,20 +32,19 @@ const CartItems = (props) => {
     return (
       <Modal>
         <Container style={{ display: "flex", justifyContent: "space-around" }}>
-            <h1>No Cart Products</h1>
-        <Button onClick={props.onCloseClick}>X</Button>
+          <h1>No Cart Products</h1>
+          <Button onClick={props.onCloseClick}>X</Button>
         </Container>
-        </Modal>
+      </Modal>
     );
   }
   return (
     <Modal>
+      <Container style={{ display: "flex", justifyContent: "space-around" }}>
+        <h1>Cart</h1>
+        <Button onClick={props.onCloseClick}>X</Button>
+      </Container>
       <ul>
-        <Container style={{ display: "flex", justifyContent: "space-around" }}>
-          <h1>Cart</h1>
-          <Button onClick={props.onCloseClick}>X</Button>
-        </Container>
-
         {allCartMedicines.map((product) => (
           <li
             key={product.id}

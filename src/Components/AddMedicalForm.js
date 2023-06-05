@@ -12,18 +12,18 @@ const AddMedicalForm = () => {
     const formSubmitHandler = async (event) => {
         event.preventDefault();
 
-        const medName = medNameInputRef.current.value;
-        const desc = descriptionInputRef.current.value;
+        const name = medNameInputRef.current.value;
+        const description = descriptionInputRef.current.value;
         const price = priceInputRef.current.value;
         const quantity = quantityInputRef.current.value;
 
         const medicineDetials = {
-            medName,
-            desc, 
+            name,
+            description, 
             price,
             quantity
         }
-        await axios.post('https://crudcrud.com/api/ec2f46f440e44d4b8d87cc9df85914ca/medAvailable', medicineDetials)
+        await axios.post('https://crudcrud.com/api/98d87dcc976c40fdb1b4d7c060a82f5c/medAvailable', medicineDetials)
 
         medNameInputRef.current.value = '';
         descriptionInputRef.current.value = '';

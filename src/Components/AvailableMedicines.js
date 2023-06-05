@@ -9,14 +9,14 @@ const AvailableMedicines = () => {
   async function fetchData() {
     setReload(false)
     const response = await axios.get(
-      "https://crudcrud.com/api/ec2f46f440e44d4b8d87cc9df85914ca/medAvailable"
+      "https://crudcrud.com/api/98d87dcc976c40fdb1b4d7c060a82f5c/medAvailable"
     );
     const data = await response.data;
     if (data) {
       const allAvailMedicines = Object.keys(data).map((index) => ({
         id: data[index]._id,
-        name: data[index].medName,
-        description: data[index].desc,
+        name: data[index].name,
+        description: data[index].description,
         price: data[index].price,
         quantity: data[index].quantity,
       }));
@@ -40,7 +40,7 @@ const AvailableMedicines = () => {
       quantity: medicine.quantity - 1,
     };
     await axios.put(
-      `https://crudcrud.com/api/ec2f46f440e44d4b8d87cc9df85914ca/medAvailable/${medicine.id}`,
+      `https://crudcrud.com/api/98d87dcc976c40fdb1b4d7c060a82f5c/medAvailable/${medicine.id}`,
       quantityUpdatedData
     );
     const updatedCartData = {
@@ -49,7 +49,7 @@ const AvailableMedicines = () => {
     };
 
     await axios.post(
-      "https://crudcrud.com/api/ec2f46f440e44d4b8d87cc9df85914ca/cartMedicine",
+      "https://crudcrud.com/api/98d87dcc976c40fdb1b4d7c060a82f5c/cartMedicine",
       updatedCartData
     );
     setReload(true)
@@ -70,10 +70,13 @@ const AvailableMedicines = () => {
               paddingTop: "10px",
             }}
           >
-            <h1>{medicine.name}</h1>
-            <p>{medicine.description}</p>
-            <h3>{medicine.price}</h3>
-            <h2>{medicine.quantity}</h2>
+            <Container style={{display: 'flex', justifyContent: 'space-between', marginRight: '10px'}}>
+                <h3>{medicine.name}</h3>
+            <p style={{fontWeight: 'bold'}}>{medicine.description}</p>
+            <h4>{medicine.price}</h4>
+            <h4>{medicine.quantity}</h4>
+            </Container>
+            
             {medicine.quantity > 0 ? <Button onClick={() => quantityHandler(medicine)}>
               Add to Cart
             </Button> : <Button disabled>Out of Stoke</Button>} 
