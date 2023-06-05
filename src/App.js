@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { Button, Container } from 'react-bootstrap';
+import AddMedicalForm from './Components/AddMedicalForm';
+import AvailableMedicines from './Components/AvailableMedicines';
+import CartItems from './Components/CartItems';
+import { useState } from 'react';
 
 function App() {
+  const [openCart, setOpenCart] = useState(false)
+
+  const cartOpenHandler = () => {
+    setOpenCart(true)
+  }
+
+  const cartCloseHandler = () => {
+    setOpenCart(false);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {openCart && <CartItems onCloseClick={cartCloseHandler}/>}
+    <Container fluid style={{display: 'flex', justifyContent: 'space-around', marginTop: '30px',marginBottom: '30px'}}>
+      <h1>Medical Store</h1>
+      <Button onClick={cartOpenHandler}>Cart</Button>
+    </Container>
+    <Container><AddMedicalForm /></Container>
+    <Container><AvailableMedicines /></Container>
+    
+    </>
   );
 }
 
